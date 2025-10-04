@@ -12,6 +12,7 @@
             <th>#</th>
             <th>Date</th>
             <th>Attendance Type</th>
+            <th>Status</th>
             <th>Description</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ \Carbon\Carbon::parse($log['date_attendance'])->format('Y-m-d H:i') ?? '-' }}</td>
             <td>{{ ucfirst($log['attendance_type'] ?? '-') }}</td>
+            <td>{{ $log['status'] ?? '-' }}</td>
             <td>{{ $log['description'] ?? '-' }}</td>
         </tr>
         @empty
