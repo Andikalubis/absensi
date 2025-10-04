@@ -17,6 +17,10 @@
             @endforeach
         </select>
     </div>
+    <div class="col-md-4">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" name="date" id="date" class="form-control" value="{{ request('date') }}">
+    </div>
     <div class="col-md-4 d-flex align-items-end">
         <button type="submit" class="btn btn-primary w-100">Filter</button>
     </div>
@@ -40,7 +44,7 @@
             <td>{{ $emp['name'] ?? '-' }}</td>
             <td>{{ $emp['departement_name'] ?? '-' }}</td>
             <td>
-                <a href="{{ route('attendance-history.show', $emp['employee_id']) }}" class="btn btn-sm btn-info">
+                <a href="{{ route('attendance-history.show', $emp['employee_id']) }}?date={{ request('date') }}" class="btn btn-sm btn-info">
                     View History
                 </a>
             </td>

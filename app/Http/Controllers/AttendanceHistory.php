@@ -16,13 +16,21 @@ class AttendanceHistory extends Controller
 
     public function index(Request $request)
     {
-        $response = Http::get("{$this->api}/attendance-history");
+        $query = [];
+        if ($request->filled('departement_id')) {
+            $query['departement_id'] = $request->departement_id;
+        }
+        if ($request->filled('date')) {
+            $query['date'] = $request->date;
+        }
+    
+        $response = Http::get("{$this->api}/attendance-history", $query);
         $employees = $response->json()['employees'] ?? [];
-
+    
         $departements = Http::get("{$this->api}/departement")->json()['data'] ?? [];
-
+    
         return view('attendance-history.index', compact('employees', 'departements'));
-    }
+    }    
 
     public function show($employeeId)
     {
